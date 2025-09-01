@@ -167,4 +167,6 @@ xkit==0.0.0
 yarl==1.7.2
 zipp==1.0.0
 django-ipgeolocation
+django-ratelimit
+celery
 

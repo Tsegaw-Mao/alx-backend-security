@@ -1,8 +1,6 @@
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login
-# type: ignore
-from ratelimit.decorators import ratelimit  # type: ignore
-
+from django_ratelimit.decorators import ratelimit
 from .ratelimit_keys import user_or_ip
 
 

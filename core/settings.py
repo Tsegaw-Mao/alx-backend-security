@@ -82,12 +82,16 @@ DATABASES = {
     }
 }
 
+# Caching configuration
+
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
         "LOCATION": "geo-cache",
     }
 }
+# Rate limit configuration
+RATELIMIT_USE_CACHE = "default"  # Uses Django cache backend
 
 
 
@@ -132,5 +136,18 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Rate limit configuration
-RATELIMIT_USE_CACHE = "default"  # Uses Django cache backend
+
+# Celery Configuration
+CELERY_BEAT_SCHEDULE = {
+    "detect-suspicious-ips-hourly": {
+        "task": "ip_tracking.tasks.detect_suspicious_ips",
+        "schedule": 3600.0,  # every hour
+    }
+}
+
+{
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "none"
+    }
+}
